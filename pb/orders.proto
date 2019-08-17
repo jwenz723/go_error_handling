@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pb;
+
+service Orders {
+    // Creates a new order
+    rpc NewOrder (NewOrderRequest) returns (NewOrderReply) {}
+}
+
+message NewOrderRequest {
+    string customerID = 1;
+}
+
+message NewOrderReply {
+    string orderID = 1;
+    string err = 2;
+}
