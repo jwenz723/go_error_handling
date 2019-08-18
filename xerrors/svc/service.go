@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"github.com/inContact/errhandling/errorthrower"
-	"github.com/pkg/errors"
+	"golang.org/x/xerrors"
 )
 
 // OrderService provides operations for Orders.
@@ -25,11 +25,11 @@ func (orderService) NewOrder(ctx context.Context, customerID string) (string, er
 
 	err := errorthrower.SomeError()
 	if err != nil {
-		return "", errors.Wrap(err, "service.NewOrder")
+		return "", xerrors.Errorf("service.NewOrder: %w", err)
 	}
 
 	return "my order id", nil
 }
 
 // ErrEmpty is returned when an input string is empty.
-var ErrEmpty = errors.New("empty string")
+var ErrEmpty = xerrors.New("empty string")

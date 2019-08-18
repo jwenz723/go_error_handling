@@ -8,6 +8,7 @@ import (
 	grpctransport "github.com/go-kit/kit/transport/grpc"
 	"github.com/inContact/errhandling/pb"
 	"github.com/pkg/errors"
+	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
 )
 
@@ -50,7 +51,7 @@ func decodeGRPCNewOrderRequest(_ context.Context, grpcReq interface{}) (interfac
 // user-domain sum response to a gRPC sum reply. Primarily useful in a server.
 func encodeGRPCNewOrderResponse(_ context.Context, response interface{}) (interface{}, error) {
 	resp := response.(NewOrderResponse)
-	return &pb.NewOrderReply{OrderID: resp.OrderID, Err: errors.Wrap(resp.Err, "grpc.NewOrder").Error()}, nil
+	return &pb.NewOrderReply{OrderID: resp.OrderID, Err: xerrors.Errorf("grpc.NewOrder: %w", resp.Err).Error()}, nil
 }
 
 // These annoying helper functions are required to translate Go error types to

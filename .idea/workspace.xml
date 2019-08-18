@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="788130c0-d99e-48cb-aff3-c8bdc313f134" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/errors.Wrap/svc/endpoint.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/errors.Wrap/svc/eplogger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/errors.Wrap/svc/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/errors.Wrap/svc/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vanilla_kit/svc/eplogger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vanilla_kit/svc/grpc.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vanilla_kit/cli/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vanilla_kit/kit/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/vanilla_kit/svc/endpoint.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vanilla_kit/kit/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/errors.Wrap/svc/grpc.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vanilla_kit/kit/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/vanilla_kit/svc/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vanilla_kit/svc/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/vanilla_kit/svc/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xerrors/svc/endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/xerrors/svc/endpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xerrors/svc/grpc.go" beforeDir="false" afterPath="$PROJECT_DIR$/xerrors/svc/grpc.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xerrors/svc/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/xerrors/svc/service.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,8 +57,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/vanilla_kit" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/vanilla_kit" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/vanilla_kit/svc" />
@@ -88,7 +80,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build github.com/inContact/errhandling/errors.Wrap/svc">
+  <component name="RunManager" selected="Go Build.go build github.com/inContact/errhandling/xerrors/svc">
     <configuration name="go build github.com/inContact/errhandling/errors.Wrap/svc" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="errhandling" />
       <working_directory value="$PROJECT_DIR$" />
@@ -106,12 +98,11 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build github.com/inContact/errhandling/xerrors/svc" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="errhandling" />
       <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/vanilla_kit/main.go" />
-      <package value="github.com/inContact/errhandling" />
+      <kind value="PACKAGE" />
+      <package value="github.com/inContact/errhandling/xerrors/svc" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
@@ -135,11 +126,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build github.com/inContact/errhandling/xerrors/svc" />
         <item itemvalue="Go Build.go build github.com/inContact/errhandling/errors.Wrap/svc" />
         <item itemvalue="Go Build.go build github.com/inContact/errhandling/vanilla_kit/svc" />
         <item itemvalue="Go Build.go build main.go (2)" />
         <item itemvalue="Go Build.go build main.go (3)" />
-        <item itemvalue="Go Build.go build main.go (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -153,7 +144,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566018724165</updated>
-      <workItem from="1566018727093" duration="7416000" />
+      <workItem from="1566018727093" duration="7959000" />
     </task>
     <servers />
   </component>

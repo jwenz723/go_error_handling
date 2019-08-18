@@ -6,7 +6,7 @@ import (
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
-	"github.com/pkg/errors"
+	"golang.org/x/xerrors"
 )
 
 // Set collects all of the endpoints that compose an add service. It's meant to
@@ -48,7 +48,7 @@ func MakeNewOrderEndpoint(s OrderService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(NewOrderRequest)
 		orderID, err := s.NewOrder(ctx, req.CustomerID)
-		return NewOrderResponse{OrderID: orderID, Err: errors.Wrap(err, "endpoint.NewOrder")}, nil
+		return NewOrderResponse{OrderID: orderID, Err: xerrors.Errorf("endpoint.NewOrder: %w", err)}, nil
 	}
 }
 
