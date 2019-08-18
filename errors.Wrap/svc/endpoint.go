@@ -1,11 +1,12 @@
-package kit
+package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
-	"github.com/inContact/orch-common/eplogger"
+	"github.com/pkg/errors"
 )
 
 // Set collects all of the endpoints that compose an add service. It's meant to
@@ -24,7 +25,7 @@ func NewSet(svc OrderService, logger log.Logger) Set {
 		infoLogger := level.Info(methodLogger)
 		errorLogger := level.Error(methodLogger)
 		newOrderEndpoint = MakeNewOrderEndpoint(svc)
-		newOrderEndpoint = eplogger.LoggingMiddleware(infoLogger, errorLogger)(newOrderEndpoint)
+		newOrderEndpoint = LoggingMiddleware(infoLogger, errorLogger)(newOrderEndpoint)
 	}
 	return Set{
 		NewOrderEndpoint: newOrderEndpoint,
@@ -47,7 +48,7 @@ func MakeNewOrderEndpoint(s OrderService) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		req := request.(NewOrderRequest)
 		orderID, err := s.NewOrder(ctx, req.CustomerID)
-		return NewOrderResponse{OrderID: orderID, Err: err}, nil
+		return NewOrderResponse{OrderID: orderID, Err: errors.Wrap(err, "endpoint.NewOrder")}, nil
 	}
 }
 
@@ -76,7 +77,7 @@ type NewOrderResponse struct {
 func (r NewOrderResponse) AppendKeyvals(keyvals []interface{}) []interface{} {
 	return append(keyvals,
 		"NewOrderResponse.OrderID", r.OrderID,
-		"NewOrderResponse.Err", r.Err)
+		"NewOrderResponse.Err", fmt.Sprintf("%+v",r.Err))
 }
 
 // Failed implements endpoint.Failer.

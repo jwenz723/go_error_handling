@@ -1,9 +1,9 @@
-package kit
+package main
 
 import (
 	"context"
-	"errors"
 	"github.com/inContact/errhandling/errorthrower"
+	"github.com/pkg/errors"
 )
 
 // OrderService provides operations for Orders.
@@ -25,7 +25,7 @@ func (orderService) NewOrder(ctx context.Context, customerID string) (string, er
 
 	err := errorthrower.SomeError()
 	if err != nil {
-		return "", err
+		return "", errors.Wrap(err, "service.NewOrder")
 	}
 
 	return "my order id", nil

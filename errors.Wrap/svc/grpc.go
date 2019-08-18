@@ -1,13 +1,13 @@
-package kit
+package main
 
 import (
 	"context"
-	"errors"
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/transport"
 	grpctransport "github.com/go-kit/kit/transport/grpc"
 	"github.com/inContact/errhandling/pb"
+	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 )
 
@@ -50,7 +50,7 @@ func decodeGRPCNewOrderRequest(_ context.Context, grpcReq interface{}) (interfac
 // user-domain sum response to a gRPC sum reply. Primarily useful in a server.
 func encodeGRPCNewOrderResponse(_ context.Context, response interface{}) (interface{}, error) {
 	resp := response.(NewOrderResponse)
-	return &pb.NewOrderReply{OrderID: resp.OrderID, Err: err2str(resp.Err)}, nil
+	return &pb.NewOrderReply{OrderID: resp.OrderID, Err: errors.Wrap(resp.Err, "grpc.NewOrder").Error()}, nil
 }
 
 // These annoying helper functions are required to translate Go error types to
@@ -62,13 +62,6 @@ func str2err(s string) error {
 		return nil
 	}
 	return errors.New(s)
-}
-
-func err2str(err error) string {
-	if err == nil {
-		return ""
-	}
-	return err.Error()
 }
 
 
