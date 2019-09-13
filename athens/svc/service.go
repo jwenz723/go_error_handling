@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"github.com/inContact/errhandling/athens/errors"
-	"github.com/inContact/errhandling/errorthrower"
+	"github.com/jwenz723/errhandling/athens/errors"
+	"github.com/jwenz723/errhandling/errorthrower"
 	"golang.org/x/xerrors"
 )
 

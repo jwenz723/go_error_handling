@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/inContact/errhandling/errorthrower"
+	"github.com/jwenz723/errhandling/errorthrower"
 	"github.com/pkg/errors"
 )
 

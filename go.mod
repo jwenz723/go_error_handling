@@ -1,4 +1,4 @@
-module github.com/inContact/errhandling
+module github.com/jwenz723/errhandling
 
 go 1.12
 

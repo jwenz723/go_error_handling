@@ -6,14 +6,14 @@ import (
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/transport"
 	grpctransport "github.com/go-kit/kit/transport/grpc"
-	"github.com/inContact/errhandling/pb"
+	"github.com/jwenz723/errhandling/pb"
 	"github.com/pkg/errors"
 	"golang.org/x/xerrors"
 	"google.golang.org/grpc"
 )
 
 type grpcServer struct {
-	newOrder    grpctransport.Handler
+	newOrder grpctransport.Handler
 }
 
 // NewGRPCServer makes a set of endpoints available as a gRPC AddServer.
@@ -64,13 +64,6 @@ func str2err(s string) error {
 	}
 	return errors.New(s)
 }
-
-
-
-
-
-
-
 
 func NewGRPCClient(conn *grpc.ClientConn, logger log.Logger) OrderService {
 	pbServiceName := "pb.Orders"

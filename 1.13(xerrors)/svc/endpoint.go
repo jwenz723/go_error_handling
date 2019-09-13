@@ -13,7 +13,7 @@ import (
 // be used as a helper struct, to collect all of the endpoints into a single
 // parameter.
 type Set struct {
-	NewOrderEndpoint    endpoint.Endpoint
+	NewOrderEndpoint endpoint.Endpoint
 }
 
 // New returns a Set that wraps the provided server, and wires in all of the
@@ -69,15 +69,15 @@ func (r NewOrderRequest) AppendKeyvals(keyvals []interface{}) []interface{} {
 
 // SumResponse collects the response values for the Sum method.
 type NewOrderResponse struct {
-	OrderID   string   `json:"order_id"`
-	Err error `json:"-"` // should be intercepted by Failed/errorEncoder
+	OrderID string `json:"order_id"`
+	Err     error  `json:"-"` // should be intercepted by Failed/errorEncoder
 }
 
 // AppendKeyvals implements eplogger.AppendKeyvalser
 func (r NewOrderResponse) AppendKeyvals(keyvals []interface{}) []interface{} {
 	return append(keyvals,
 		"NewOrderResponse.OrderID", r.OrderID,
-		"NewOrderResponse.Err", fmt.Sprintf("%+v",r.Err))
+		"NewOrderResponse.Err", fmt.Sprintf("%+v", r.Err))
 }
 
 // Failed implements endpoint.Failer.

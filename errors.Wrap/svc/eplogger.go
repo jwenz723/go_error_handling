@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/kit/log"
-	"github.com/pkg/errors"
 	"time"
 )
 
@@ -59,10 +58,6 @@ func LoggingMiddleware(logger, errLogger log.Logger) endpoint.Middleware {
 	}
 }
 
-type stackTracer interface {
-	StackTrace() errors.StackTrace
-}
-
 // makeKeyvals will place the received parameters into an []interface{} to be
 // returned in the order:
 // 	1. err
@@ -70,7 +65,7 @@ type stackTracer interface {
 //	3. req (if AppendKeyvalser is implemented)
 //	4. resp (if AppendKeyvalser is implemented)
 func makeKeyvals(req, resp interface{}, d time.Duration, err error) []interface{} {
-	KVs := []interface{}{transErrKey, fmt.Sprintf("%+v",err), tookKey, d}
+	KVs := []interface{}{transErrKey, fmt.Sprintf("%+v", err), tookKey, d}
 	if l, ok := req.(AppendKeyvalser); ok {
 		KVs = l.AppendKeyvals(KVs)
 	}

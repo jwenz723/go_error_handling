@@ -6,14 +6,14 @@ import (
 	"github.com/go-kit/kit/endpoint"
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
-	"github.com/inContact/errhandling/athens/errors"
+	"github.com/jwenz723/errhandling/athens/errors"
 )
 
 // Set collects all of the endpoints that compose an add service. It's meant to
 // be used as a helper struct, to collect all of the endpoints into a single
 // parameter.
 type Set struct {
-	NewOrderEndpoint    endpoint.Endpoint
+	NewOrderEndpoint endpoint.Endpoint
 }
 
 // New returns a Set that wraps the provided server, and wires in all of the
@@ -70,8 +70,8 @@ func (r NewOrderRequest) AppendKeyvals(keyvals []interface{}) []interface{} {
 
 // SumResponse collects the response values for the Sum method.
 type NewOrderResponse struct {
-	OrderID   string   `json:"order_id"`
-	Err error `json:"-"` // should be intercepted by Failed/errorEncoder
+	OrderID string `json:"order_id"`
+	Err     error  `json:"-"` // should be intercepted by Failed/errorEncoder
 }
 
 // AppendKeyvals implements eplogger.AppendKeyvalser
@@ -80,7 +80,7 @@ func (r NewOrderResponse) AppendKeyvals(keyvals []interface{}) []interface{} {
 	if !ok {
 		return append(keyvals,
 			"NewOrderResponse.OrderID", r.OrderID,
-			"NewOrderResponse.Err", fmt.Sprintf("%+v",r.Err))
+			"NewOrderResponse.Err", fmt.Sprintf("%+v", r.Err))
 	}
 
 	return append(keyvals,

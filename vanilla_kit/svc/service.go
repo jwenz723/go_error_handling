@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"errors"
-	"github.com/inContact/errhandling/errorthrower"
+	"github.com/jwenz723/errhandling/errorthrower"
 )
 
 // OrderService provides operations for Orders.

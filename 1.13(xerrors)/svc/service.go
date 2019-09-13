@@ -2,7 +2,8 @@ package main
 
 import (
 	"context"
-	"github.com/inContact/errhandling/errorthrower"
+	"fmt"
+	"github.com/jwenz723/errhandling/errorthrower"
 	"golang.org/x/xerrors"
 )
 
@@ -25,7 +26,7 @@ func (orderService) NewOrder(ctx context.Context, customerID string) (string, er
 
 	err := errorthrower.SomeError()
 	if err != nil {
-		return "", xerrors.Errorf("service.NewOrder: %w", err)
+		return "", fmt.Errorf("service.NewOrder: %w", err)
 	}
 
 	return "my order id", nil

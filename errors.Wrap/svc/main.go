@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"github.com/go-kit/kit/log"
-	"github.com/inContact/errhandling/pb"
 	"github.com/inContact/orch-common/orchlog"
 	orchlogflag "github.com/inContact/orch-common/orchlog/flag"
+	"github.com/jwenz723/errhandling/pb"
 	"google.golang.org/grpc"
 	"gopkg.in/alecthomas/kingpin.v2"
 	"net"
@@ -19,8 +19,8 @@ func main() {
 	svcName := "errhandling"
 
 	cfg := struct {
-		grpcAddr          string
-		orchlogConfig     orchlog.Config
+		grpcAddr      string
+		orchlogConfig orchlog.Config
 	}{
 		orchlogConfig: orchlog.Config{},
 	}
@@ -46,7 +46,6 @@ func main() {
 	endpoints := NewSet(svc, endpointsLogger)
 	grpcServer := NewGRPCServer(endpoints, gRPCLogger)
 
-
 	// Setup the server
 	grpcListener, err := net.Listen("tcp", cfg.grpcAddr)
 	if err != nil {
@@ -58,13 +57,10 @@ func main() {
 		_ = baseServer.Serve(grpcListener)
 	}()
 
-
-
-
 	// Do a client request to the server
 	conn, err := grpc.Dial(cfg.grpcAddr, grpc.WithInsecure())
 	if err != nil {
-		panic (err)
+		panic(err)
 	}
 	s := NewGRPCClient(conn, gRPCClientLogger)
 	orderID, err := s.NewOrder(context.TODO(), "123")
@@ -73,8 +69,3 @@ func main() {
 	grpcListener.Close()
 	time.Sleep(1 * time.Second)
 }
-
-
-
-
-
