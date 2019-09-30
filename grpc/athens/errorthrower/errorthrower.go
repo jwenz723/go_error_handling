@@ -6,22 +6,22 @@ import (
 )
 
 func SomeError() error {
-	const op = errors.Op("SomeError")
+	const op = errors.Op("errorthrower.SomeError")
 	return errors.E(op, LevelOne())
 }
 
 func LevelOne() error {
-	const op = errors.Op("LevelOne")
+	const op = errors.Op("errorthrower.LevelOne")
 	return errors.E(op, LevelTwo())
 }
 
 func LevelTwo() error {
-	const op = errors.Op("LevelTwo")
+	const op = errors.Op("errorthrower.LevelTwo")
 	return errors.E(op, LevelThree())
 }
 
 func LevelThree() error {
-	const op = errors.Op("LevelThree")
+	const op = errors.Op("errorthrower.LevelThree")
 	c := codes.Internal
 	gm := errors.GM("grpc status message")
 
