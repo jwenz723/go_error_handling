@@ -40,8 +40,8 @@ type Error struct {
 	CustomerID C
 	Err        error
 	Severity   level.Value
-	GrpcCode *codes.Code
-	GrpcMsg GM
+	GrpcCode   *codes.Code
+	GrpcMsg    GM
 	*stack
 }
 
@@ -51,6 +51,23 @@ type Error struct {
 // extra information.
 func (e Error) Error() string {
 	return e.Err.Error()
+}
+
+// Format implements a custom formatter to achieve printing of `stack` when `%+v` is used as a formatting verb
+func (e Error) Format(s fmt.State, verb rune) {
+	switch verb {
+	case 'v':
+		if s.Flag('+') {
+			io.WriteString(s, e.Error())
+			e.stack.Format(s, verb)
+			return
+		}
+		fallthrough
+	case 's':
+		io.WriteString(s, e.Error())
+	case 'q':
+		fmt.Fprintf(s, "%q", e.Error())
+	}
 }
 
 func (e Error) GRPCStatus() *status.Status {
@@ -135,7 +152,7 @@ func E(args ...interface{}) Error {
 		if pc, _, line, ok := runtime.Caller(1); ok {
 			f := Frame(pc)
 			name := runtime.FuncForPC(f.pc()).Name()
-			e.Op = Op(fmt.Sprintf("%s:%d",funcname(name), line))
+			e.Op = Op(fmt.Sprintf("%s:%d", funcname(name), line))
 		}
 	}
 	return e
